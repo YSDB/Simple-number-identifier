@@ -6,12 +6,12 @@ from math import sqrt
 from collections import Counter
 
 def binaryzation(data):
-    row = data.shape[1]
-    col = data.shape[2]
+    row = data.shape[0]
+    col = data.shape[1]
     matrix = np.zeros((row,col),dtype='int')
     for i in range(row):
         for j in range(col):
-            if data[0][i][j] > 127:
+            if data[i][j] > 127:
                 matrix[i][j] = 1
 
     return matrix
@@ -20,7 +20,7 @@ def load_data(path, ratio):
     files = os.listdir(path)
     file_num = len(files)
 
-    img_mat = np.empty((file_num,1,28,28),dtype = 'float')
+    img_mat = np.empty((file_num,28,28),dtype = 'float')
     data = np.empty((file_num,28,28),dtype = 'float')
     label = np.empty((file_num), dtype = 'int')
 
